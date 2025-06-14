@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Sorting Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sorting Visualizer is a React web application that generates a new array and allows the user to see the sortings of these arrays via Merge, Quick, Heap, and Bubble Sort. The purpose of this project is to familiarize myself with JavaScript array managment, along with incorporating previous Python and C coding experiences by challenging myself to figure out how to write a Merge Sort, Quick Sort, Heap Sort, and Bubble Sort functions. This project was completed by using HTML, CSS, and JavaScript with a React framework.
 
-## Available Scripts
+## What did I learn?
 
-In the project directory, you can run:
+Although I already have prior experience with HTML and CSS, the use of a .jsx extension was new to me. It's just like using <script> in an HTML file, but vice versa in this case. This project has mostly helped me better understand array manipulation in JavaScript, just like Python, C, and C++. I have taken insightful information from YouTube videos that helped me visualize the sorting methods. The links are provided below:
 
-### `npm start`
+https://www.youtube.com/watch?v=4VqmGXwpLqc&list=PL9xmBV_5YoZOZSbGAXAPIq1BeUf4j20pl -- Merge Sort
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+https://www.youtube.com/watch?v=Hoixgm4-P4M&list=PL9xmBV_5YoZOZSbGAXAPIq1BeUf4j20pl&index=2 -- Quick Sort
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+https://www.youtube.com/watch?v=2DmK_H7IdTo&list=PL9xmBV_5YoZOZSbGAXAPIq1BeUf4j20pl&index=6 -- Heap Sort
 
-### `npm test`
+https://www.youtube.com/watch?v=xli_FI7CuzA&list=PL9xmBV_5YoZOZSbGAXAPIq1BeUf4j20pl&index=3 -- Bubble Sort
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Access
 
-### `npm run build`
+I have published this site to GitHub Pages, the link is provided here:
+https://fawazm30.github.io/SortingVisualizer/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you want to run this project locally then just git clone it:
+```
+git clone https://github.com/fawazm30/SortingVisualizer.git
+cd SortingVisualizer
+```
