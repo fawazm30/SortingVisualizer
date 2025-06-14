@@ -79,32 +79,28 @@ export default class SortingVisualizer extends React.Component {
         }, animations.length * ANIMATION_SPEED_MS);
     }
     heapSort() {
-        const animations = getHeapSortAnimations(this.state.array);
-        for (let i = 0; i < animations.length; i++) {
-            const arrayBars = document.getElementsByClassName('array-bar');
-            const isColorChange = animations[i].length === 2;
-            
-            if (isColorChange) {
-                const [barOneIdx, barTwoIdx] = animations[i];
-                const barOneStyle = arrayBars[barOneIdx].style;
-                const barTwoStyle = arrayBars[barTwoIdx].style;
-                const color = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
-                setTimeout(() => {
-                    barOneStyle.backgroundColor = color;
-                    barTwoStyle.backgroundColor = color;
-                }, i * ANIMATION_SPEED_MS);
-            } else {
-                // This is a swap animation
-                const [barOneIdx, barTwoIdx, barOneHeight, barTwoHeight] = animations[i];
-                setTimeout(() => {
-                    const barOneStyle = arrayBars[barOneIdx].style;
-                    const barTwoStyle = arrayBars[barTwoIdx].style;
-                    barOneStyle.height = `${barOneHeight}px`;
-                    barTwoStyle.height = `${barTwoHeight}px`;
-                }, i * ANIMATION_SPEED_MS);
-            }
+    const animations = getHeapSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+        const arrayBars = document.getElementsByClassName('array-bar');
+        if (animations[i][2] === "compare" || animations[i][2] === "revert") {
+            const [barOneIdx, barTwoIdx, action] = animations[i];
+            const color = action === "compare" ? SECONDARY_COLOR : PRIMARY_COLOR;
+            setTimeout(() => {
+                arrayBars[barOneIdx].style.backgroundColor = color;
+                arrayBars[barTwoIdx].style.backgroundColor = color;
+            }, i * ANIMATION_SPEED_MS);
+        } else if (animations[i][4] === "swap") {
+            const [barOneIdx, barTwoIdx, barOneHeight, barTwoHeight] = animations[i];
+            setTimeout(() => {
+                arrayBars[barOneIdx].style.height = `${barOneHeight}px`;
+                arrayBars[barTwoIdx].style.height = `${barTwoHeight}px`;
+            }, i * ANIMATION_SPEED_MS);
         }
     }
+    setTimeout(() => {
+        this.setAllBarsToPrimary();
+    }, animations.length * ANIMATION_SPEED_MS);
+}
     bubbleSort() {
         const BUBBLE_SORT_SPEED = 0.1;
         const animations = getBubbleSortAnimations(this.state.array);
