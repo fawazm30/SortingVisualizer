@@ -6,4 +6,7 @@ The purpose of this project is to familiarize myself with JavaScript array manag
 
 Although I already have prior experience with HTML and CSS, the use of a .jsx extension was new to me. It's just like using <script> in an HTML file, but vice versa in this case. This project has mostly helped me better understand array manipulation in JavaScript, just like Python, C, and C++.
 
+## Access
 
+I have published this site to github pages, the link is provided here:
+https://fawazm30.github.io/SortingVisualizer/
