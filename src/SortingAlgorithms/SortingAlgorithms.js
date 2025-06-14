@@ -100,18 +100,18 @@ function partition(array, low, high, animations) {
 }
 /* ---------------------- Heap Sort ---------------------- */
 export function getHeapSortAnimations(array) {
-    const animations = []; // This will hold the animations for the heap sort
-    const arrayCopy = array.slice(); // Create a copy of the array to avoid mutating the original array
-    const n = arrayCopy.length; // Get the length of the array
-    
-    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) { // Build the heap
-        heapify(arrayCopy, n, i, animations); // Call heapify to build the heap
+    const animations = [];
+    const arrayCopy = array.slice();
+    const n = arrayCopy.length;
+
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+        heapify(arrayCopy, n, i, animations);
     }
-   
+
     for (let i = n - 1; i > 0; i--) {
         animations.push([0, i, "compare"]);
         animations.push([0, i, "revert"]);
-        animations.push([0, i, array[i], array[0], "swap"]);
+        animations.push([0, i, arrayCopy[0], arrayCopy[i], "swap"]);
         // swap in arrayCopy
         const temp = arrayCopy[0];
         arrayCopy[0] = arrayCopy[i];
@@ -145,8 +145,7 @@ function heapify(array, heapSize, rootIndex, animations) {
     if (largest !== rootIndex) {
         animations.push([rootIndex, largest, "compare"]);
         animations.push([rootIndex, largest, "revert"]);
-        animations.push([rootIndex, largest, array[largest], array[rootIndex], "swap"]);
-        // swap in array
+        animations.push([rootIndex, largest, array[rootIndex], array[largest], "swap"]);
         const temp = array[rootIndex];
         array[rootIndex] = array[largest];
         array[largest] = temp;
