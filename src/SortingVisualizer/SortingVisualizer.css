@@ -1,9 +1,9 @@
 .array-container {
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* optional: aligns bars to bottom */
+    align-items: flex-end; 
     flex-wrap: wrap;
-    height: 100vh; /* optional: keeps bars within viewport */
+    height: 100vh; 
 }
 .button-bar {
     display: flex;
