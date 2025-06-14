@@ -11,6 +11,7 @@ const NUMBER_OF_ARRAY_BARS = 310; //number of bars in the array
 const PRIMARY_COLOR = 'blue'; //color of the bars
 const SECONDARY_COLOR = 'red'; //color of the bars when they are being compared
 
+
 export default class SortingVisualizer extends React.Component {
     constructor(props) {
         super(props);
@@ -80,6 +81,12 @@ export default class SortingVisualizer extends React.Component {
                 }, i * ANIMATION_SPEED_MS);
             }
         }
+        const arrayBars = document.getElementsByClassName('array-bar');
+        setTimeout(() => {
+            for (let i = 0; i < arrayBars.length; i++) {
+                arrayBars[i].style.backgroundColor = PRIMARY_COLOR;
+            }
+        }, animations.length * ANIMATION_SPEED_MS);
     }
     heapSort() {
         const animations = getHeapSortAnimations(this.state.array);
@@ -107,6 +114,12 @@ export default class SortingVisualizer extends React.Component {
                 }, i * ANIMATION_SPEED_MS);
             }
         }
+        const arrayBars = document.getElementsByClassName('array-bar');
+        setTimeout(() => {
+            for (let i = 0; i < arrayBars.length; i++) {
+                arrayBars[i].style.backgroundColor = PRIMARY_COLOR;
+            }
+        }, animations.length * ANIMATION_SPEED_MS);
     }
     bubbleSort() {
         const BUBBLE_SORT_SPEED = 0.1; // Custom speed of the bubble sort animation
@@ -135,6 +148,12 @@ export default class SortingVisualizer extends React.Component {
                 }, i * BUBBLE_SORT_SPEED);
             }
         }
+        const arrayBars = document.getElementsByClassName('array-bar');
+        setTimeout(() => {
+            for (let i = 0; i < arrayBars.length; i++) {
+                arrayBars[i].style.backgroundColor = PRIMARY_COLOR;
+            }
+        }, animations.length * BUBBLE_SORT_SPEED);
     }
 
     render() {
