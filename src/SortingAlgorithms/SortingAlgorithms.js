@@ -75,8 +75,8 @@ function partition(array, low, high, animations) {
     let i = low - 1; // Index of smaller element
     
     for (let j = low; j < high; j++) { // Loop through the array from low to high
-        animations.push([j, high]); // Highlight the current element and the pivot
-        animations.push([j, high]); // Highlight the current element and the pivot again to revert color
+        animations.push([j, high, "compare"]); // compare (red)
+        animations.push([j, high, "revert"]);  // revert (blue)
         
         if (array[j] < pivot) { // If the current element is smaller than the pivot
             i++; // Increment the index of the smaller element
@@ -90,10 +90,13 @@ function partition(array, low, high, animations) {
     }
     
     if (i + 1 !== high) { // If the pivot is not already in the correct position
-        animations.push([i + 1, high, array[high], array[i + 1]]); // Record the swap animation
-        const temp = array[i + 1]; // Swap the pivot with the element at i + 1
-        array[i + 1] = array[high]; // Assign the pivot to the smaller index
-        array[high] = temp; // Assign the smaller element to the pivot index
+        animations.push([i + 1, high, "compare"]); // compare (red)
+        animations.push([i + 1, high, "revert"]);  // revert (blue)
+        animations.push([i + 1, high, array[high], array[i + 1], "swap"]);
+        // swap
+        const temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
     }
     
     return i + 1; // Return the pivot index
@@ -109,9 +112,9 @@ export function getHeapSortAnimations(array) {
     }
    
     for (let i = n - 1; i > 0; i--) { // Extract elements from the heap
-        animations.push([0, i]); // Highlight the root and the last element
-        animations.push([0, i]); // Highlight the root and the last element again to revert color
-        animations.push([0, i, arrayCopy[i], arrayCopy[0]]); // Record the swap animation
+        animations.push([0, i, "compare"]); // compare (red)
+        animations.push([0, i, "revert"]);  // revert (blue)
+        animations.push([0, i, array[i], array[0], "swap"]);
 
         const temp = arrayCopy[0]; // Swap the root with the last element
         arrayCopy[0] = arrayCopy[i]; // Assign the last element to the root
@@ -129,8 +132,8 @@ function heapify(array, heapSize, rootIndex, animations) { // This function main
     let right = 2 * rootIndex + 2; // Right child index
     
     if (left < heapSize) { // Check if left child exists
-        animations.push([left, largest]); // Highlight the left child and the largest element
-        animations.push([left, largest]); // Highlight the left child and the largest element again to revert color
+        animations.push([left, largest, "compare"]);
+        animations.push([left, largest, "revert"]);
 
         if (array[left] > array[largest]) { // If the left child is larger than the root
             largest = left; // Update largest to left child's index
@@ -138,22 +141,22 @@ function heapify(array, heapSize, rootIndex, animations) { // This function main
     }
     
     if (right < heapSize) { // Check if right child exists
-        animations.push([right, largest]); // Highlight the right child and the largest element
-        animations.push([right, largest]); // Highlight the right child and the largest element again to revert color
-        
+        animations.push([right, largest, "compare"]); // Highlight the right child and the largest element
+        animations.push([right, largest, "revert"]); // Highlight the right child and the largest element again to revert color
+
         if (array[right] > array[largest]) { // If the right child is larger than the current largest
             largest = right; // Update largest to right child's index
         }
     }
     
-    if (largest !== rootIndex) {
-        animations.push([rootIndex, largest]); 
-        animations.push([rootIndex, largest]); 
-        animations.push([rootIndex, largest, array[largest], array[rootIndex]]); 
+    if (largest !== rootIndex) { // If the largest is not the root, we need to swap
+        animations.push([rootIndex, largest, "swap"]); // Record the swap animation
+        animations.push([rootIndex, largest, "revert"]); // Record the swap animation again to revert color
+        animations.push([rootIndex, largest, array[largest], array[rootIndex], "swap"]);
         
-        const temp = array[rootIndex];
-        array[rootIndex] = array[largest];
-        array[largest] = temp;
+        const temp = array[rootIndex]; // Swap the root with the largest element
+        array[rootIndex] = array[largest]; // Assign the largest element to the root
+        array[largest] = temp; // Assign the root to the largest element
         
         heapify(array, heapSize, largest, animations);
     }
@@ -166,12 +169,12 @@ export function getBubbleSortAnimations(array) {
     
     for (let i = 0; i < n - 1; i++) {
         for (let j = 0; j < n - i - 1; j++) {
-            animations.push([j, j + 1]);
-            animations.push([j, j + 1]); 
+            animations.push([j, j + 1, "compare"]);
+            animations.push([j, j + 1, "revert"]); 
             
             if (arrayCopy[j] > arrayCopy[j + 1]) {
-                animations.push([j, j + 1, arrayCopy[j + 1], arrayCopy[j]]);
-                
+                animations.push([j, j + 1, arrayCopy[j + 1], arrayCopy[j], "swap"]);
+
                 const temp = arrayCopy[j];
                 arrayCopy[j] = arrayCopy[j + 1];
                 arrayCopy[j + 1] = temp;
