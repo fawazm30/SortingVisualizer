@@ -71,35 +71,32 @@ function quickSortHelper(array, low, high, animations) {
 }
 
 function partition(array, low, high, animations) {
-    const pivot = array[high]; // Choose the last element as pivot
-    let i = low - 1; // Index of smaller element
-    
-    for (let j = low; j < high; j++) { // Loop through the array from low to high
-        animations.push([j, high, "compare"]); // compare (red)
-        animations.push([j, high, "revert"]);  // revert (blue)
-        
-        if (array[j] < pivot) { // If the current element is smaller than the pivot
-            i++; // Increment the index of the smaller element
-            if (i !== j) { // If i is not equal to j, we need to swap
-                animations.push([i, j, array[j], array[i]]); // Record the swap animation
-                const temp = array[i]; // Swap the elements
-                array[i] = array[j]; // Assign the current element to the smaller index
-                array[j] = temp; // Assign the smaller element to the current index
+    const pivot = array[high];
+    let i = low - 1;
+    for (let j = low; j < high; j++) {
+        animations.push([j, high, "compare"]);
+        animations.push([j, high, "revert"]);
+        if (array[j] < pivot) {
+            i++;
+            if (i !== j) {
+                // Push swap with new heights
+                animations.push([i, j, array[j], array[i], "swap"]);
+                // Swap in underlying array
+                const temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
     }
-    
-    if (i + 1 !== high) { // If the pivot is not already in the correct position
-        animations.push([i + 1, high, "compare"]); // compare (red)
-        animations.push([i + 1, high, "revert"]);  // revert (blue)
+    if (i + 1 !== high) {
+        animations.push([i + 1, high, "compare"]);
+        animations.push([i + 1, high, "revert"]);
         animations.push([i + 1, high, array[high], array[i + 1], "swap"]);
-        // swap
         const temp = array[i + 1];
         array[i + 1] = array[high];
         array[high] = temp;
     }
-    
-    return i + 1; // Return the pivot index
+    return i + 1;
 }
 /* ---------------------- Heap Sort ---------------------- */
 export function getHeapSortAnimations(array) {
@@ -111,53 +108,48 @@ export function getHeapSortAnimations(array) {
         heapify(arrayCopy, n, i, animations); // Call heapify to build the heap
     }
    
-    for (let i = n - 1; i > 0; i--) { // Extract elements from the heap
-        animations.push([0, i, "compare"]); // compare (red)
-        animations.push([0, i, "revert"]);  // revert (blue)
+    for (let i = n - 1; i > 0; i--) {
+        animations.push([0, i, "compare"]);
+        animations.push([0, i, "revert"]);
         animations.push([0, i, array[i], array[0], "swap"]);
-
-        const temp = arrayCopy[0]; // Swap the root with the last element
-        arrayCopy[0] = arrayCopy[i]; // Assign the last element to the root
-        arrayCopy[i] = temp; // Assign the root to the last element
-        
-        heapify(arrayCopy, i, 0, animations); // Call heapify to maintain the heap property after the swap
+        // swap in arrayCopy
+        const temp = arrayCopy[0];
+        arrayCopy[0] = arrayCopy[i];
+        arrayCopy[i] = temp;
+        heapify(arrayCopy, i, 0, animations);
     }
-    
     return animations;
 }
 
-function heapify(array, heapSize, rootIndex, animations) { // This function maintains the heap property for the subtree rooted at rootIndex
-    let largest = rootIndex; // Initialize largest as root
-    let left = 2 * rootIndex + 1; // Left child index
-    let right = 2 * rootIndex + 2; // Right child index
-    
-    if (left < heapSize) { // Check if left child exists
+function heapify(array, heapSize, rootIndex, animations) {
+    let largest = rootIndex;
+    let left = 2 * rootIndex + 1;
+    let right = 2 * rootIndex + 2;
+
+    if (left < heapSize) {
         animations.push([left, largest, "compare"]);
         animations.push([left, largest, "revert"]);
-
-        if (array[left] > array[largest]) { // If the left child is larger than the root
-            largest = left; // Update largest to left child's index
+        if (array[left] > array[largest]) {
+            largest = left;
         }
     }
-    
-    if (right < heapSize) { // Check if right child exists
-        animations.push([right, largest, "compare"]); // Highlight the right child and the largest element
-        animations.push([right, largest, "revert"]); // Highlight the right child and the largest element again to revert color
 
-        if (array[right] > array[largest]) { // If the right child is larger than the current largest
-            largest = right; // Update largest to right child's index
+    if (right < heapSize) {
+        animations.push([right, largest, "compare"]);
+        animations.push([right, largest, "revert"]);
+        if (array[right] > array[largest]) {
+            largest = right;
         }
     }
-    
-    if (largest !== rootIndex) { // If the largest is not the root, we need to swap
-        animations.push([rootIndex, largest, "swap"]); // Record the swap animation
-        animations.push([rootIndex, largest, "revert"]); // Record the swap animation again to revert color
+
+    if (largest !== rootIndex) {
+        animations.push([rootIndex, largest, "compare"]);
+        animations.push([rootIndex, largest, "revert"]);
         animations.push([rootIndex, largest, array[largest], array[rootIndex], "swap"]);
-        
-        const temp = array[rootIndex]; // Swap the root with the largest element
-        array[rootIndex] = array[largest]; // Assign the largest element to the root
-        array[largest] = temp; // Assign the root to the largest element
-        
+        // swap in array
+        const temp = array[rootIndex];
+        array[rootIndex] = array[largest];
+        array[largest] = temp;
         heapify(array, heapSize, largest, animations);
     }
 }
