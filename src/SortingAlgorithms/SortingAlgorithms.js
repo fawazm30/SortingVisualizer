@@ -103,52 +103,68 @@ export function getHeapSortAnimations(array) {
     const animations = [];
     const arrayCopy = array.slice();
     const n = arrayCopy.length;
-
+    
+    // Build max heap (rearrange array)
     for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
         heapify(arrayCopy, n, i, animations);
     }
-
+    
+    // Extract elements from heap one by one
     for (let i = n - 1; i > 0; i--) {
-        animations.push([0, i, "compare"]);
-        animations.push([0, i, "revert"]);
-        animations.push([0, i, arrayCopy[0], arrayCopy[i], "swap"]);
-        // swap in arrayCopy
+        // Move current root to end (swap)
+        animations.push([0, i]); // Comparison animation
+        animations.push([0, i]); // Revert color
+        animations.push([0, i, arrayCopy[i], arrayCopy[0]]); // Swap animation
+        
+        // Perform the swap
         const temp = arrayCopy[0];
         arrayCopy[0] = arrayCopy[i];
         arrayCopy[i] = temp;
+        
+        // Call heapify on the reduced heap
         heapify(arrayCopy, i, 0, animations);
     }
+    
     return animations;
 }
 
 function heapify(array, heapSize, rootIndex, animations) {
-    let largest = rootIndex;
-    let left = 2 * rootIndex + 1;
-    let right = 2 * rootIndex + 2;
-
+    let largest = rootIndex; // Initialize largest as root
+    let left = 2 * rootIndex + 1; // Left child
+    let right = 2 * rootIndex + 2; // Right child
+    
+    // If left child is larger than root
     if (left < heapSize) {
-        animations.push([left, largest, "compare"]);
-        animations.push([left, largest, "revert"]);
+        animations.push([left, largest]); // Compare left child with current largest
+        animations.push([left, largest]); // Revert color
+        
         if (array[left] > array[largest]) {
             largest = left;
         }
     }
-
+    
+    // If right child is larger than largest so far
     if (right < heapSize) {
-        animations.push([right, largest, "compare"]);
-        animations.push([right, largest, "revert"]);
+        animations.push([right, largest]); // Compare right child with current largest
+        animations.push([right, largest]); // Revert color
+        
         if (array[right] > array[largest]) {
             largest = right;
         }
     }
-
+    
+    // If largest is not root
     if (largest !== rootIndex) {
-        animations.push([rootIndex, largest, "compare"]);
-        animations.push([rootIndex, largest, "revert"]);
-        animations.push([rootIndex, largest, array[rootIndex], array[largest], "swap"]);
+        animations.push([rootIndex, largest]); // Comparison before swap
+        animations.push([rootIndex, largest]); // Revert color
+        animations.push([rootIndex, largest, array[largest], array[rootIndex]]); // Swap animation
+        
+        // Perform the swap
         const temp = array[rootIndex];
         array[rootIndex] = array[largest];
         array[largest] = temp;
+        
+        // Recursively heapify the affected sub-tree
         heapify(array, heapSize, largest, animations);
     }
 }
