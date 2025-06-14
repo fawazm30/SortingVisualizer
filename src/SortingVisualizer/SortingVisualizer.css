@@ -1,7 +1,16 @@
 .array-container {
-    position: absolute;
-    left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* optional: aligns bars to bottom */
+    flex-wrap: wrap;
+    height: 100vh; /* optional: keeps bars within viewport */
 }
+.button-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 
 .array-bar {
     width: 2px;

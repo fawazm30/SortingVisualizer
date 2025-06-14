@@ -146,11 +146,13 @@ export default class SortingVisualizer extends React.Component {
                     <div className="array-bar" key={idx} style={{ backgroundColor: PRIMARY_COLOR, height: `${value}px` }}>
                     </div>
                 ))}
-                <button onClick={() => this.resetArray()}>Generate New Array</button>
-                <button onClick={() => this.mergeSort()}>Merge Sort</button>
-                <button onClick={() => this.quickSort()}>Quick Sort</button>
-                <button onClick={() => this.heapSort()}>Heap Sort</button>
-                <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+                <div className="button-bar">
+                    <button onClick={() => this.resetArray()}>Generate New Array</button>
+                    <button onClick={() => this.mergeSort()}>Merge Sort</button>
+                    <button onClick={() => this.quickSort()}>Quick Sort</button>
+                    <button onClick={() => this.heapSort()}>Heap Sort</button>
+                    <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+                </div>
             </div>
         );
     }
