@@ -4,7 +4,7 @@
     align-items: flex-end; 
     flex-wrap: wrap;
     height: 100vh; 
-    overflow: auto;
+    overflow-x: auto;
 }
 
 .button-bar {
