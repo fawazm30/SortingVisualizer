@@ -7,7 +7,7 @@ import './SortingVisualizer.css';
 
 
 const ANIMATION_SPEED_MS = 1; //speed of the animation in milliseconds
-const NUMBER_OF_ARRAY_BARS = 310; //number of bars in the array
+const NUMBER_OF_ARRAY_BARS = 150; //number of bars in the array
 const PRIMARY_COLOR = 'blue'; //color of the bars
 const SECONDARY_COLOR = 'red'; //color of the bars when they are being compared
 
