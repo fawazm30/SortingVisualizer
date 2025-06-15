@@ -19,3 +19,25 @@
     display: inline-block;
     margin: 0 1px;
 }
+/* For ipad/tablet screens */
+@media (max-width: 900px) {
+    .array-bar {
+        width: 3px;
+        margin: 0 1px;
+    }
+    .array-container {
+        height: 60vh;
+        overflow-x: auto;;
+    }
+}
+/* For small screens */
+@media (max-width: 600px) {
+    .array-bar {
+        width: 4px;
+        margin: 0 0.5px;
+    }
+    .array-container {
+        height: 40vh;
+        overflow-x: auto;
+    }
+}
