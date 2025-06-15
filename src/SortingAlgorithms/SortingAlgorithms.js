@@ -1,31 +1,31 @@
 export function getMergeSortAnimations(array) {
     const animations = [];
     const auxiliaryArray = array.slice();
-    mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
+    mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations); // Call the helper function to perform the merge sort
     return animations;
 }
 
-function mergeSortHelper(
-    mainArray,
-    startIdx,
-    endIdx,
-    auxiliaryArray,
-    animations,
+function mergeSortHelper( 
+    mainArray, // The main array that will be sorted
+    startIdx, // The starting index of the subarray to be sorted
+    endIdx, // The ending index of the subarray to be sorted
+    auxiliaryArray, // The auxiliary array used for merging
+    animations, // The array that will hold the animations for the sorting process
 ) {
-    if (startIdx === endIdx) return;
-    const middleIdx = Math.floor((startIdx + endIdx) / 2);
-    mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
-    mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
-    doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
+    if (startIdx === endIdx) return; // Base case: if the subarray has one or zero elements, it is already sorted
+    const middleIdx = Math.floor((startIdx + endIdx) / 2); // Calculate the middle index of the subarray
+    mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations); // Recursively sort the left half of the subarray
+    mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations); // Recursively sort the right half of the subarray
+    doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations); // Merge the two sorted halves of the subarray
 }
 
-function doMerge(
-    mainArray,
-    startIdx,
-    middleIdx,
-    endIdx,
-    auxiliaryArray,
-    animations,
+function doMerge( // Function to merge two sorted halves of a subarray
+    mainArray, // The main array that will be sorted
+    startIdx, // Starting index of the subarray to be merged
+    middleIdx, // Ending index of the left half of the subarray
+    endIdx, // Ending index of the right half of the subarray
+    auxiliaryArray, // The auxiliary array used for merging
+    animations, // The array that will hold the animations for the sorting process
 ) {
     let k = startIdx;
     let i = startIdx;
@@ -41,13 +41,13 @@ function doMerge(
             mainArray[k++] = auxiliaryArray[j++]; //if the right value is smaller, we push it to the main array
         }
     }
-    while (i <= middleIdx) {
+    while (i <= middleIdx) { // If there are remaining elements in the left half
         animations.push([i, i]);
         animations.push([i, i]);
         animations.push([k, auxiliaryArray[i]]);
         mainArray[k++] = auxiliaryArray[i++];
     }
-    while (j <= endIdx) {
+    while (j <= endIdx) { // If there are remaining elements in the right half
         animations.push([j, j]);
         animations.push([j, j]);
         animations.push([k, auxiliaryArray[j]]);
