@@ -22,17 +22,21 @@
     margin: 0 1px;
     flex-shrink: 0;
 }
-/* For ipad/tablet screens */
+/* iPad/tablet */
 @media (max-width: 900px) {
     .array-container {
-        height: 100vh;
-        overflow-x: auto;;
+        flex-wrap: nowrap;
+    }
+    .array-bar {
+        width: 3px;
     }
 }
-/* For small screens */
+/* iPhone/small screens */
 @media (max-width: 600px) {
     .array-container {
-        height: 100vh;
-        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+    .array-bar {
+        width: 4px;
     }
 }
