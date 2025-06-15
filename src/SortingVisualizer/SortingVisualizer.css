@@ -4,7 +4,7 @@
     align-items: flex-end; 
     flex-wrap: wrap;
     height: 100vh; 
-    overflow-x: auto;
+    overflow-x: auto; /* Horizontal scrolling enabled */
 }
 
 .button-bar {
@@ -18,29 +18,4 @@
     background-color: pink;
     display: inline-block;
     margin: 0 1px;
-}
-/* For ipad/tablet screens */
-@media (max-width: 900px) {
-    .array-bar {
-        width: 3px;
-        margin: 0 1px;
-    }
-    .array-container {
-        height: 60vh;
-    }
-}
-/* For small screens */
-@media (max-width: 600px) {
-    .array-bar {
-        width: 4px;
-        margin: 0 0.5px;
-    }
-    .array-container {
-        height: 40vh;
-        padding-bottom: 30px;
-    }
-    .button-bar {
-        flex-direction: column;
-        gap: 6px;
-    }
 }
