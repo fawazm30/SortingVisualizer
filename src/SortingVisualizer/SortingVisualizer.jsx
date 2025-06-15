@@ -6,9 +6,9 @@ import {getBubbleSortAnimations} from '../SortingAlgorithms/SortingAlgorithms.js
 import './SortingVisualizer.css';
 
 
-const ANIMATION_SPEED_MS = 1; //speed of the animation in milliseconds
+const ANIMATION_SPEED_MS = 5; //speed of the animation in milliseconds
 const NUMBER_OF_ARRAY_BARS = 150; //number of bars in the array
-const PRIMARY_COLOR = 'blue'; //color of the bars
+const PRIMARY_COLOR = '#317de6'; //color of the bars
 const SECONDARY_COLOR = 'red'; //color of the bars when they are being compared
 
 
@@ -27,7 +27,7 @@ export default class SortingVisualizer extends React.Component {
     resetArray() {
         const array = [];
         for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
-            array.push(randomIntFromInterval(5, 700));
+            array.push(randomIntFromInterval(5, 600)); //generate a random number between 5 and 700 for the height of the bars
         }
         this.setState({ array });
     }
@@ -137,11 +137,13 @@ export default class SortingVisualizer extends React.Component {
         const { array } = this.state; //destructure the array from the state
 
         return (
-            <div className="array-container">
-                {array.map((value, idx) => (
-                    <div className="array-bar" key={idx} style={{ backgroundColor: PRIMARY_COLOR, height: `${value}px` }}>
-                    </div>
-                ))}
+            <div className="visualizer-wrapper">
+                <div className="array-container">
+                    {array.map((value, idx) => (
+                        <div className="array-bar" key={idx} style={{ backgroundColor: PRIMARY_COLOR, height: `${value}px` }}>
+                        </div>
+                    ))}
+                </div>
                 <div className="button-bar">
                     <button onClick={() => this.resetArray()}>Generate New Array</button>
                     <button onClick={() => this.mergeSort()}>Merge Sort</button>

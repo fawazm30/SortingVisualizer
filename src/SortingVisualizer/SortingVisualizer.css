@@ -1,11 +1,19 @@
+.visualizer-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical center */
+    align-items: center;     /* horizontal center */
+}
+
 .array-container {
     display: flex;
     justify-content: center;
     align-items: flex-end; 
     flex-wrap: wrap;
-    height: 100vh; 
     overflow-x: auto; /* Horizontal scrolling enabled */
     overflow-y: hidden;
+    width: 100%; 
 }
 
 .button-bar {
@@ -16,8 +24,8 @@
 }
 
 .array-bar {
-    width: 2px;
-    background-color: pink;
+    width: 7px;
+    background-color: #317de6; /* Blue */
     display: inline-block;
     margin: 0 1px;
     flex-shrink: 0;
