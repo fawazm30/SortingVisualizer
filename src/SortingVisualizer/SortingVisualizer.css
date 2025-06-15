@@ -5,12 +5,14 @@
     flex-wrap: wrap;
     height: 100vh; 
     overflow-x: auto; /* Horizontal scrolling enabled */
+    overflow-y: hidden;
 }
 
 .button-bar {
     margin-top: 10px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .array-bar {
@@ -18,26 +20,19 @@
     background-color: pink;
     display: inline-block;
     margin: 0 1px;
+    flex-shrink: 0;
 }
 /* For ipad/tablet screens */
 @media (max-width: 900px) {
-    .array-bar {
-        width: 3px;
-        margin: 0 1px;
-    }
     .array-container {
-        height: 60vh;
+        height: 100vh;
         overflow-x: auto;;
     }
 }
 /* For small screens */
 @media (max-width: 600px) {
-    .array-bar {
-        width: 4px;
-        margin: 0 0.5px;
-    }
     .array-container {
-        height: 40vh;
+        height: 100vh;
         overflow-x: auto;
     }
 }
